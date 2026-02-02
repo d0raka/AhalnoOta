@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ספירה לאחור - בדידה 1</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        /* כאן אתה מכניס את הקישור לתמונה שלך */
+        .bg-image {
+            background-image: url('https://i.ibb.co/QjHhqvGq/Untitled.png'); 
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* שכבה כהה מעל התמונה כדי שהטקסט יהיה ברור */
+        .overlay {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            border: 3px solid #ff4d4d;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            color: #ff4d4d;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        #timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            direction: ltr; /* המספרים מוצגים משמאל לימין */
+        }
+
+        .time-part {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            min-width: 90px;
+        }
+
+        .number {
+            display: block;
+            font-size: 3.5rem;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .label {
+            display: block;
+            font-size: 1rem;
+            margin-top: 5px;
+            color: #ccc;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-image">
+    <div class="overlay">
+        <h1>אכלנו אותה!</h1>
+        <h2>המבחן בבדידה 1 בעוד:</h2>
+        
+        <div id="timer">
+            <div class="time-part">
+                <span class="number" id="seconds">00</span>
+                <span class="label">שניות</span>
+            </div>
+            <div class="time-part">
+                <span class="number" id="minutes">00</span>
+                <span class="label">דקות</span>
+            </div>
+            <div class="time-part">
+                <span class="number" id="hours">00</span>
+                <span class="label">שעות</span>
+            </div>
+            <div class="time-part">
+                <span class="number" id="days">00</span>
+                <span class="label">ימים</span>
+            </div>
+        </div>
+
+        <div class="footer">שיהיה לנו בהצלחה...</div>
+    </div>
+</div>
+
+<script>
+    function updateTimer() {
+        const now = new Date();
+        
+        // הגדרת היעד: מחר ב-9:00 בבוקר
+        let target = new Date();
+        target.setDate(now.getDate() + 1);
+        target.setHours(9, 0, 0, 0);
+
+        const diff = target - now;
+
+        if (diff <= 0) {
+            document.querySelector(".overlay").innerHTML = "<h1>המבחן התחיל! בהצלחה!</h1>";
+            return;
+        }
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = d.toString().padStart(2, '0');
+        document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+        document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+        document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+</script>
+
+</body>
+</html>
