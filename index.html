@@ -16,7 +16,7 @@
             overflow: hidden;
         }
 
-        /* כאן אתה מכניס את הקישור לתמונה שלך */
+        /* --- כאן אתה מחליף את הקישור לתמונה שלך --- */
         .bg-image {
             background-image: url('https://i.ibb.co/QjHhqvGq/Untitled.png'); 
             height: 100%;
@@ -28,23 +28,24 @@
             align-items: center;
         }
 
-        /* שכבה כהה מעל התמונה כדי שהטקסט יהיה ברור */
         .overlay {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.75); /* קצת יותר כהה שיהיה קריא */
             padding: 40px;
             border-radius: 20px;
             text-align: center;
             color: white;
             border: 3px solid #ff4d4d;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
             width: 90%;
-            max-width: 600px;
+            max-width: 650px;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin: 0 0 10px 0;
             color: #ff4d4d;
+            font-weight: 800;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
         }
 
         h2 {
@@ -53,32 +54,38 @@
             opacity: 0.9;
         }
 
+        /* הגדרות השעון */
         #timer {
             display: flex;
             justify-content: center;
             gap: 15px;
-            direction: ltr; /* המספרים מוצגים משמאל לימין */
+            
+            /* זה מה שמסדר את המספרים משמאל לימין (ימים בשמאל, שניות בימין) */
+            direction: ltr; 
         }
 
         .time-part {
             background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
+            padding: 15px 10px;
             border-radius: 12px;
-            min-width: 90px;
+            min-width: 80px;
+            width: 100px; /* רוחב אחיד לקוביות */
+            backdrop-filter: blur(5px);
         }
 
         .number {
             display: block;
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: bold;
             font-family: 'Courier New', Courier, monospace;
+            line-height: 1;
         }
 
         .label {
             display: block;
             font-size: 1rem;
-            margin-top: 5px;
-            color: #ccc;
+            margin-top: 10px;
+            color: #ddd;
         }
 
         .footer {
@@ -98,20 +105,23 @@
         
         <div id="timer">
             <div class="time-part">
-                <span class="number" id="seconds">00</span>
-                <span class="label">שניות</span>
+                <span class="number" id="days">00</span>
+                <span class="label">ימים</span>
             </div>
-            <div class="time-part">
-                <span class="number" id="minutes">00</span>
-                <span class="label">דקות</span>
-            </div>
+            
             <div class="time-part">
                 <span class="number" id="hours">00</span>
                 <span class="label">שעות</span>
             </div>
+
             <div class="time-part">
-                <span class="number" id="days">00</span>
-                <span class="label">ימים</span>
+                <span class="number" id="minutes">00</span>
+                <span class="label">דקות</span>
+            </div>
+
+            <div class="time-part">
+                <span class="number" id="seconds">00</span>
+                <span class="label">שניות</span>
             </div>
         </div>
 
